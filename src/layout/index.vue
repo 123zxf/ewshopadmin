@@ -7,8 +7,10 @@
             <n-layout-header>
                 <PageHeader></PageHeader>
             </n-layout-header>
-            <n-layout-content class="content">
-                <router-view></router-view>
+            <n-layout-content content-style="padding: 0px;background-color:#f0f2f5">
+                <div class="content">
+                    <router-view></router-view>
+                </div>
             </n-layout-content>
             <n-layout-footer>
                 <div class="text-center footer">
@@ -22,6 +24,8 @@
 <script lang="ts" setup>
 import PageHeader from '@/layout/components/PageHeader.vue';
 import PageSider from '@/layout/components/PageSider.vue';
+import {useMessage} from 'naive-ui';
+window.$message = useMessage();
 </script>
 
 <style scoped>

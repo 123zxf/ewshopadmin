@@ -1,5 +1,7 @@
 import { RouteRecordRaw } from "vue-router";
 import Layout from '@/layout/index.vue';
+import {Browsers} from '@vicons/ionicons5';
+import { renderIcon } from '@/utils';
 
 const routeName = 'dashboard';
 
@@ -22,7 +24,8 @@ const routes: RouteRecordRaw[] = [
         redirect:'/dashboard/console',
         meta: {
             title: 'Dashboard',
-            icon: 'dashboard',
+            icon: renderIcon(Browsers),
+            sort:0
         },
         children: [
             {
@@ -30,8 +33,8 @@ const routes: RouteRecordRaw[] = [
                 name: `${routeName}_console`,
                 component: ()=>import('@/views/dashboard/index.vue'),
                 meta: {
-                    title: '控制台',
-                    icon: 'console',
+                    title: '主控台',
+                    icon: renderIcon(Browsers),
                 }
             }
         ]

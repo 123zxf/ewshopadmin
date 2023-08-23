@@ -11,6 +11,7 @@ export function login(data:Object){
 }
 
 type userdate = {
+[x: string]: any;
     avatar:string;
     name:string;
 } 

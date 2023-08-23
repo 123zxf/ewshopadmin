@@ -1,11 +1,11 @@
 <template>
     <div>
-        控制台首页
+        <div>订单列表</div>
     </div>
 </template>
 
 <script setup lang="ts">
-    
+
 </script>
 
 <style scoped>

@@ -42,7 +42,9 @@ import { reactive, ref } from "vue";
 import { useUserStore } from "@/store/user";
 import { PersonOutline, LockClosedOutline } from "@vicons/ionicons5";
 import { useRoute,useRouter } from "vue-router";
-import { FormInst } from "naive-ui";
+import { FormInst,useMessage } from "naive-ui";
+const message = useMessage();
+window.$message = useMessage();
 interface FormState {
   email: string;
   password: string;
@@ -102,20 +104,16 @@ const handleSubmit = async (e: Event) => {
       console.log('login')
       //登录成功
       loading.value = false;
-      //alert('登录成功');
+      message.success('登录成功');
       //跳转页面
-      console.log("1");
       const redirect = route.query.redirect as string || '/dashboard';
-      console.log("2");
-      
-      router.push( redirect );
-      console.log("3");
-      
+      setTimeout(() => {
+        router.push( redirect );
+      }, 200);
     }).catch(
       () => {
         //登录失败
         loading.value = false;
-        alert('登录失败');
       }
     );
   })

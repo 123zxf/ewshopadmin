@@ -4,7 +4,7 @@ import {login,user} from '@/api/auth';
 export interface IUserState{
     token:string;
     username:string;
-    avatar:string;
+    avatar_url:string;
     permissions:string[];
     info:Object;
 }
@@ -13,7 +13,7 @@ export const useUserStore = defineStore({
     state:():IUserState=>({
         token:localStorage.getItem('token')||'',
         username:'',
-        avatar:'',
+        avatar_url:'',
         permissions:[],
         info:{},
     }),
@@ -22,15 +22,17 @@ export const useUserStore = defineStore({
             return this.token;
         },
         getAvatar():string{
-            return this.avatar;
+            return this.avatar_url;
         },
-        getNickname():string{
+        getUserName():string{
             return this.username;
         },
         getPermissions():string[]{
             return this.permissions;
         },
         getUserInfo():Object{
+            // if (!this.info?.id) {   
+            // }
             return this.info;
         }
     },
@@ -43,7 +45,7 @@ export const useUserStore = defineStore({
             this.token = token;
         },
         setAvatar(avatar:string){
-            this.avatar = avatar;
+            this.avatar_url = avatar;
         },
         setUserInfo(info:Object){
             this.info = info;
@@ -59,19 +61,22 @@ export const useUserStore = defineStore({
                     this.getUser();
                 }
             } catch(error){ 
-                console.log(error);
+                return Promise.reject(error);
             }
         },
         async getUser(){
-            try{
+            try {
                 const response = await user();
-                this.setUserInfo(response);
-                this.setAvatar(response.avatar);
-                this.setUserName(response.name);
-
-            }catch(error){
+                const aaa = {
+                    user:response,
+                    url:response.avatar_url,
+                    name:response.name,
+                };
+                const a = JSON.stringify(aaa);
+                localStorage.setItem('user', a);
+                return response;
+            } catch (error) {
                 console.log(error);
-                
             }
         }
     }

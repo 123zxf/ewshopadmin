@@ -11,7 +11,7 @@
     "skipLibCheck": true,
     "paths": {
       "@/*": [
-        "src/*"
+        "./src/*"
       ]
     },
     /* Bundler mode */
@@ -34,7 +34,8 @@
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.vue"
+    "src/**/*.vue",
+    "src/global.d.ts"
   ],
   "references": [
     {
